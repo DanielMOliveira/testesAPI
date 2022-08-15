@@ -66,19 +66,17 @@ namespace IntegrationTests
                         services.AddScoped<ICardService, CardService>();
                         services.AddSingleton(httpClient);
                         services.AddSingleton(_appSettings.Object);
-                    }
-
-                    );
+                    });
                 });
 
             var client = application.CreateClient();
 
             var cards = Builder<CardDTO>.CreateListOfSize(2).Build();
-            var json = Builder<AddCardCommand>.CreateNew().With(x => x.Cards = cards).With(x => x.Customer = Builder<CustomerDTO>.CreateNew().Build()).Build();
+            var requestMessage = Builder<AddCardCommand>.CreateNew().With(x => x.Cards = cards).With(x => x.Customer = Builder<CustomerDTO>.CreateNew().Build()).Build();
             #endregion
 
             #region Act
-            var response = await client.PostAsync("api/card", new StringContent(JsonSerializer.Serialize(json), Encoding.UTF8, "application/json"));
+            var response = await client.PostAsync("api/card", new StringContent(JsonSerializer.Serialize(requestMessage), Encoding.UTF8, "application/json"));
             #endregion
 
             #region Assert
