@@ -1,0 +1,91 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HubPagamento.ApiExterna.Service.DTO
+{
+    public class BillDTO
+    {
+        /// <summary>
+        /// Número de identificação único do portador.
+        /// </summary>
+        /// <example>
+        /// 12332423
+        /// </example> 
+        public string CustomerIdentity { get; set; }
+
+        /// <summary>
+        /// Nome do portador.
+        /// </summary>
+        /// <example>
+        /// John Doe
+        /// </example> 
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Endereço do portador.
+        /// </summary>
+        /// <example>
+        /// Av. República do Brasil, 1988
+        /// </example> 
+        public string Address { get; set; }
+
+        /// <summary>
+        /// Complemento do portador.
+        /// </summary>
+        /// <example>
+        /// 08 Andar
+        /// </example> 
+        public string Complement { get; set; }
+
+        /// <summary>
+        /// Cidade do portador.
+        /// </summary>
+        /// <example>
+        /// São Paulo
+        /// </example> 
+        public string City { get; set; }
+
+        /// <summary>
+        /// Estado do portador.
+        /// </summary>
+        /// <example>
+        /// SP
+        /// </example> 
+        public string State { get; set; }
+
+        /// <summary>
+        /// CEP, código postal do portador.
+        /// </summary>
+        /// <example>
+        /// 08742000
+        /// </example> 
+        public string PostalCode { get; set; }
+
+        /// <summary>
+        /// País do portador.
+        /// </summary>
+        /// <example>
+        /// BR
+        /// </example> 
+        public string Country { get; set; }
+
+        /// <summary>
+        /// Telefone do portador.
+        /// </summary>
+        /// <example>
+        /// 998712121
+        /// </example> 
+        public string Phone { get; set; }
+
+        /// <summary>
+        /// E-mail do portador.
+        /// </summary>
+        /// <example>
+        /// meucliente@site.com.br
+        /// </example> 
+        public string Email { get; set; }
+    }
+}
