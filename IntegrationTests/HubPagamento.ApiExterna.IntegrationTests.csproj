@@ -30,4 +30,8 @@
     <ProjectReference Include="..\HubPagamento.ApiExterna.API\HubPagamento.ApiExterna.API.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+  </ItemGroup>
+
 </Project>
