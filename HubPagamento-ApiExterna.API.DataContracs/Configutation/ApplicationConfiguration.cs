@@ -4,6 +4,11 @@ using HubPagamento.ApiExterna.Service.Factories;
 using HubPagamento.ApiExterna.Service.Services.Card;
 using Microsoft.Extensions.DependencyInjection;
 using HubPagamento.ApiExterna.IoC.Configuration;
+using HubPagamento.ApiExterna.API.DataContracs.Validators;
+using HubPagamento.ApiExterna.API.Application;
+using FluentValidation;
+using HubPagamento.ApiExterna.API.DataContracs.Requests;
+using HubPagamento.ApiExterna.Service.DTO;
 
 namespace HubPagamento.ApiExterna.API.Configutation
 {
@@ -19,6 +24,12 @@ namespace HubPagamento.ApiExterna.API.Configutation
             services.AddScoped<ICardService, CardService>();
             #endregion
 
+            #region Validators
+            services.AddScoped<IValidator<AddCardCommand>, AddCardValidator>();
+            services.AddScoped<IValidator<CardDTO>, CardDTOValidator>();
+            services.AddScoped<IValidator<CustomerDTO>, CustomerDTOValidator>();
+            #endregion
+
             return services;
         }
 
@@ -32,5 +43,7 @@ namespace HubPagamento.ApiExterna.API.Configutation
 
             return services;
         }
+
+
     }
 }

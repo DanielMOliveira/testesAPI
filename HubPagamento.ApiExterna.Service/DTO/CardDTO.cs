@@ -16,7 +16,6 @@ namespace HubPagamento.ApiExterna.API.DataContracs.Requests
         /// <example>
         /// Mastercard
         /// </example>
-        [Required]
         public string FlagBrand { get; set; }
 
         /// <summary>
@@ -25,7 +24,6 @@ namespace HubPagamento.ApiExterna.API.DataContracs.Requests
         /// <example>
         /// John Doe
         /// </example>
-        [Required]
         public string CardHolder { get; set; }
 
         /// <summary>
@@ -34,7 +32,6 @@ namespace HubPagamento.ApiExterna.API.DataContracs.Requests
         /// <example>
         /// 4548812049400004
         /// </example>
-        [Required]
         public string CardNumber { get; set; }
 
         /// <summary>
@@ -43,7 +40,6 @@ namespace HubPagamento.ApiExterna.API.DataContracs.Requests
         /// <example>
         /// 123
         /// </example>
-        [Required]
         public string CardSecurityCode { get; set; }
 
         /// <summary>
@@ -52,7 +48,6 @@ namespace HubPagamento.ApiExterna.API.DataContracs.Requests
         /// <example>
         /// 202012
         /// </example>
-        [Required]
         public string CardExpirationDate { get; set; }
 
         /// <summary>
@@ -66,7 +61,6 @@ namespace HubPagamento.ApiExterna.API.DataContracs.Requests
         /// <example>
         /// false
         /// </example>
-        [Required]
         public bool Fraud { get; set; }
         /// <summary>
         /// Dados para analise de antifraude
