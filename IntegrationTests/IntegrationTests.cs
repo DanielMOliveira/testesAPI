@@ -30,12 +30,16 @@ namespace IntegrationTests
         }
 
         [Theory]
-        [InlineData(HttpStatusCode.Conflict, false)]
-        [InlineData(HttpStatusCode.Unauthorized, false)]
-        [InlineData(HttpStatusCode.BadRequest, false)]
-        [InlineData(HttpStatusCode.OK, true)]
-        public async Task Post_Add_Card_Should_Return_A_409_StatusCode(HttpStatusCode statusCode, bool isSucess)
+        [InlineData(HttpStatusCode.Conflict, false, "Ocorreu um erro de validação interna")]
+        [InlineData(HttpStatusCode.Unauthorized, false, "Você não possui autorização para essa funcionalidade")]
+        [InlineData(HttpStatusCode.BadRequest, false, "Sua solicitação não foi entendida pelo servidor")]
+        [InlineData(HttpStatusCode.OK, true, "Cartão inserido com sucesso")]
+        public async Task PostCard_Deve_Retornar_Um_StatusCode_Correspondente_Ao_Inline(HttpStatusCode statusCode, bool isSucess, string message)
         {
+            var json = new JsonObject() {
+                ["message"] = message
+            };
+
             #region Arrange
             _handlerMessage
                 .Protected()
@@ -47,7 +51,7 @@ namespace IntegrationTests
                 .ReturnsAsync(new HttpResponseMessage
                 {
                     StatusCode = statusCode,
-                    Content = new StringContent(@"{ ""message"": ""Cartão não cadastrado"" }")
+                    Content = new StringContent(json.ToString())
                     
                 })
                 .Verifiable();
