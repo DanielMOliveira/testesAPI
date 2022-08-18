@@ -58,7 +58,7 @@ namespace IntegrationTests
 
             var httpClient = new HttpClient(_handlerMessage.Object);
 
-            var appSettings = Builder<AppSettings>.CreateNew().With(x => x.WalletApi = Builder<WalletApiApi>.CreateNew().With(x => x.BaseURL = "http://localhost/").Build()).Build();
+            var appSettings = Builder<AppSettings>.CreateNew().With(x => x.WalletApi = Builder<WalletApi>.CreateNew().With(x => x.BaseURL = "http://localhost/").Build()).Build();
             _appSettings.Setup(x => x.Value).Returns(() => appSettings);
 
             var application = new WebApplicationFactory<Program>()
