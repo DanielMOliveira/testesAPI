@@ -9,6 +9,8 @@ using HubPagamento.ApiExterna.API.Application;
 using FluentValidation;
 using HubPagamento.ApiExterna.API.DataContracs.Requests;
 using HubPagamento.ApiExterna.Service.DTO;
+using HubPagamento.ApiExterna.API.DataContracs.Commands.Integration;
+using HubPagamento.ApiExterna.Service.Services.Integration;
 
 namespace HubPagamento.ApiExterna.API.Configutation
 {
@@ -18,16 +20,19 @@ namespace HubPagamento.ApiExterna.API.Configutation
         {
             #region Factories
             services.AddScoped<IWalletApiResponseFactory, WalletApiResponseFactory>();
+            services.AddScoped<IIntegrationApiResponseFactory, IntegrationApiResponseFactory>();
             #endregion
 
             #region Services
             services.AddScoped<ICardService, CardService>();
+            services.AddScoped<IIntegrationService, IntegrationService>();
             #endregion
 
             #region Validators
             services.AddScoped<IValidator<AddCardCommand>, AddCardValidator>();
             services.AddScoped<IValidator<CardDTO>, CardDTOValidator>();
             services.AddScoped<IValidator<CustomerDTO>, CustomerDTOValidator>();
+            services.AddScoped<IValidator<TokenizeCardCommand>, TokenizeCardValidator>();
             #endregion
 
             return services;
@@ -38,6 +43,12 @@ namespace HubPagamento.ApiExterna.API.Configutation
             services.AddHttpClient<ICardService, CardService>(client =>
             {
                 client.BaseAddress = new Uri(appSettings.WalletApi.BaseURL); ;
+                client.Timeout = TimeSpan.FromSeconds(60);
+            }).SetHandlerLifetime(TimeSpan.FromMinutes(10));
+
+            services.AddHttpClient<IIntegrationService, IntegrationService>(client =>
+            {
+                client.BaseAddress = new Uri(appSettings.IntegrationApi.M4UBaseURL); ;
                 client.Timeout = TimeSpan.FromSeconds(60);
             }).SetHandlerLifetime(TimeSpan.FromMinutes(10));
 

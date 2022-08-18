@@ -12,7 +12,7 @@ namespace HubPagamento.ApiExterna.Service.Responses
         [JsonPropertyName("resultHint")]
         public string ResultHint { get; set; }
 
-        [JsonPropertyName("resultSucess")]
+        [JsonPropertyName("resultSuccess")]
         public bool ResultSucess { get; set; }
 
         [JsonPropertyName("resultCode")]
