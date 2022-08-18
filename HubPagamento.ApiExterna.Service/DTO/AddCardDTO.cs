@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace HubPagamento.ApiExterna.Service.DTO
@@ -16,8 +17,10 @@ namespace HubPagamento.ApiExterna.Service.DTO
             Cards = cards;
         }
 
+        [JsonPropertyName("cliente")]
         public CustomerDTO Customer { get; set; }
 
+        [JsonPropertyName("cartoes")]
         public IEnumerable<CardDTO> Cards { get; set; }
     }
 }
