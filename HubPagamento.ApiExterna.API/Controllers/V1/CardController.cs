@@ -1,5 +1,6 @@
 ﻿using HubPagamento.ApiExterna.API.Application;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HubPagamento.ApiExterna.API.Controllers.V1
@@ -15,6 +16,7 @@ namespace HubPagamento.ApiExterna.API.Controllers.V1
             _mediator = mediator;
         }
 
+        [Authorize]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
