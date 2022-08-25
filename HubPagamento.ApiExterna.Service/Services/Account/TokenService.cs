@@ -29,10 +29,11 @@ namespace HubPagamento.ApiExterna.Service.Services.Account
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim(ClaimTypes.Name, login),
-                    //new Claim(ClaimTypes.Role, Role.ToString())
+                    //new Claim(ClaimTypes.Role, "admin")
                 }),
                 Expires = DateTime.UtcNow.AddHours(2),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
+                Issuer = _settings.JwtSettings.Issuer
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenWrite = tokenHandler.WriteToken(token);
