@@ -11,6 +11,7 @@ using HubPagamento.ApiExterna.API.DataContracs.Requests;
 using HubPagamento.ApiExterna.Service.DTO;
 using HubPagamento.ApiExterna.API.DataContracs.Commands.Integration;
 using HubPagamento.ApiExterna.Service.Services.Integration;
+using HubPagamento.ApiExterna.Service.Services.Account;
 
 namespace HubPagamento.ApiExterna.API.Configutation
 {
@@ -26,6 +27,7 @@ namespace HubPagamento.ApiExterna.API.Configutation
             #region Services
             services.AddScoped<ICardService, CardService>();
             services.AddScoped<IIntegrationService, IntegrationService>();
+            services.AddScoped<ITokenService, TokenService>();
             #endregion
 
             #region Validators
