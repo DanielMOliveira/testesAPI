@@ -47,6 +47,25 @@ builder.Services.AddControllers().ConfigureApiBehaviorOptions(option =>
     };
 });
 
+builder.Services.AddApiVersioning(options =>
+{
+    // Retorna os headers "api-supported-versions" e "api-deprecated-versions"
+    // indicando versões suportadas pela API e o que está como deprecated
+    options.ReportApiVersions = true;
+
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.DefaultApiVersion = new ApiVersion(1, 1);
+});
+
+builder.Services.AddVersionedApiExplorer(options =>
+{
+    // Agrupar por número de versão
+    options.GroupNameFormat = "'v'VVV";
+
+    // Necessário para o correto funcionamento das rotas
+    options.SubstituteApiVersionInUrl = true;
+});
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -123,6 +142,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseMiddleware<ErrorHandlerMiddleware>();

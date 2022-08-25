@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HubPagamento.ApiExterna.API.Controllers.V1
 {
+    [ApiVersion("1.0")]
     [Route("api/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
