@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace HubPagamento.ApiExterna.Service.Requests
 {
@@ -15,7 +10,7 @@ namespace HubPagamento.ApiExterna.Service.Requests
             PassWord = passWord;
         }
 
-        [JsonPropertyName("serviço")]
+        [JsonPropertyName("servico")]
         public string Service { get; set; }
 
         [JsonPropertyName("senha")]

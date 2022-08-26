@@ -7,6 +7,7 @@ namespace HubPagamento.ApiExterna.API.Controllers.V1
 {
     [ApiVersion("1.0")]
     [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class CardController : ControllerBase
     {
@@ -27,6 +28,5 @@ namespace HubPagamento.ApiExterna.API.Controllers.V1
             var response = await _mediator.Send(addCardCommand);
             return Ok(response);
         }
-
     }
 }

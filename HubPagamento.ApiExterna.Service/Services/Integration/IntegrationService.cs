@@ -7,13 +7,14 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace HubPagamento.ApiExterna.Service.Services.Integration
 {
     public class IntegrationService : IIntegrationService
     {
         private readonly HttpClient _httpClient;
-        private readonly AppSettings? _settings;
+        private readonly AppSettings _settings;
         private readonly ILogger<IIntegrationService> _logger;
         private readonly IIntegrationApiResponseFactory _integrationFactory;
 
@@ -28,7 +29,13 @@ namespace HubPagamento.ApiExterna.Service.Services.Integration
         public async Task<BemobiM4UIntegrationResponse> InvokeBemobiM4UAsync(CardM4UBemodiDTO cardM4U)
         {
             
-            var jsonContent = JsonSerializer.Serialize(cardM4U);
+            var jsonContent = JsonSerializer.Serialize(cardM4U, new JsonSerializerOptions()
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            });
+
             var requestContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
             _logger.LogInformation("Chamando Endpoint de Tokenização M4U");
