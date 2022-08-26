@@ -10,6 +10,6 @@ namespace HubPagamento.ApiExterna.Service.Contracts
 {
     public interface IIntegrationService
     {
-        Task<BemobiM4UIntegrationResponse> InvokeBemobiM4UAsync(CardM4UBemodiDTO cardM4U);
+        Task<BaseResponse> InvokeBemobiM4UAsync(CardM4UBemodiDTO cardM4U);
     }
 }

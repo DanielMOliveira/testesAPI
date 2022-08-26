@@ -26,7 +26,7 @@ namespace HubPagamento.ApiExterna.Service.Services.Account
             _factoryResponse = factoryResponse;
         }
 
-        public async Task<AuthorizeResponse> Login(string service, string password)
+        public async Task<BaseResponse> Login(string service, string password)
         {
             var jsonContent = JsonSerializer.Serialize(new LoginRequest(service, password), new JsonSerializerOptions()
             {

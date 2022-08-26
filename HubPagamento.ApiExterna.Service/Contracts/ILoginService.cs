@@ -9,6 +9,6 @@ namespace HubPagamento.ApiExterna.Service.Contracts
 {
     public interface ILoginService
     {
-        Task<AuthorizeResponse> Login(string service, string password);
+        Task<BaseResponse> Login(string service, string password);
     }
 }

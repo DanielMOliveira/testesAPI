@@ -26,7 +26,7 @@ namespace HubPagamento.ApiExterna.Service.Services.Integration
             _integrationFactory = integrationFactory;
         }
 
-        public async Task<BemobiM4UIntegrationResponse> InvokeBemobiM4UAsync(CardM4UBemodiDTO cardM4U)
+        public async Task<BaseResponse> InvokeBemobiM4UAsync(CardM4UBemodiDTO cardM4U)
         {
             
             var jsonContent = JsonSerializer.Serialize(cardM4U, new JsonSerializerOptions()
