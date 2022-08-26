@@ -20,14 +20,15 @@ namespace HubPagamento.ApiExterna.API.Configutation
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             #region Factories
-            services.AddScoped<IWalletApiResponseFactory, WalletApiResponseFactory>();
+            services.AddScoped<IWorkFlowApiResponseFactory, WorkFlowApiResponseFactory>();
             services.AddScoped<IIntegrationApiResponseFactory, IntegrationApiResponseFactory>();
+            services.AddScoped<ILoginApiResponseFactory, LoginApiResponseFactory>();
             #endregion
 
             #region Services
             services.AddScoped<ICardService, CardService>();
             services.AddScoped<IIntegrationService, IntegrationService>();
-            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<ILoginService, LoginService>();
             #endregion
 
             #region Validators
@@ -44,13 +45,13 @@ namespace HubPagamento.ApiExterna.API.Configutation
         {
             services.AddHttpClient<ICardService, CardService>(client =>
             {
-                client.BaseAddress = new Uri(appSettings.WalletApi.BaseURL); ;
+                client.BaseAddress = new Uri(appSettings.WorkFlowApi.BaseURL); ;
                 client.Timeout = TimeSpan.FromSeconds(60);
             }).SetHandlerLifetime(TimeSpan.FromMinutes(10));
 
             services.AddHttpClient<IIntegrationService, IntegrationService>(client =>
             {
-                client.BaseAddress = new Uri(appSettings.IntegrationApi.M4UBaseURL); ;
+                client.BaseAddress = new Uri(appSettings.IntegrationM4UApi.M4UBaseURL); ;
                 client.Timeout = TimeSpan.FromSeconds(60);
             }).SetHandlerLifetime(TimeSpan.FromMinutes(10));
 

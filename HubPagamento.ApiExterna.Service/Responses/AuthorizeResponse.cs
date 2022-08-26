@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace HubPagamento.ApiExterna.Service.Responses
@@ -12,13 +13,16 @@ namespace HubPagamento.ApiExterna.Service.Responses
         {
 
         }
-        public AuthorizeResponse(string token, string message)
+        public AuthorizeResponse(string token, string nameSystem)
         {
             Token = token;
-            Message = message;
+            NameSystem = nameSystem;
         }
 
+        [JsonPropertyName("tokenSessao")]
         public string Token { get; set; }
-        public string Message { get; set; }
+
+        [JsonPropertyName("nomeSistema")]
+        public string NameSystem { get; set; }
     }
 }

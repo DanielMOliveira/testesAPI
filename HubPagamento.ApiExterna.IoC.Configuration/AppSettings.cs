@@ -21,11 +21,15 @@ namespace HubPagamento.ApiExterna.IoC.Configuration
 
         [Required]
         public string CardEndpoint { get; set; }
+
+        public string Login { get; set; }
     }
 
     public class IntegrationM4UApi
     {
         public string M4UBaseURL { get; set; }
+
+        public string M4UCardsEndPoint { get; set; }
     }
 
     public class JwtSettings

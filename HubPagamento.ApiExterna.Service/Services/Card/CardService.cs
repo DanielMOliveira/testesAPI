@@ -16,11 +16,11 @@ namespace HubPagamento.ApiExterna.Service.Services.Card
     {
         private readonly HttpClient _httpClient;
         private readonly AppSettings _settings;
-        private readonly IWalletApiResponseFactory _walletApiResponseFactory;
+        private readonly IWorkFlowApiResponseFactory _workFlowApiResponseFactory;
         private readonly ILogger<ICardService> _logger;
-        public CardService(IOptions<AppSettings> settings, ILogger<ICardService> logger, HttpClient httpClient, IWalletApiResponseFactory walletApiResponseFactory)
+        public CardService(IOptions<AppSettings> settings, ILogger<ICardService> logger, HttpClient httpClient, IWorkFlowApiResponseFactory walletApiResponseFactory)
         {
-            _walletApiResponseFactory = walletApiResponseFactory;
+            _workFlowApiResponseFactory = walletApiResponseFactory;
             _settings = settings?.Value;
             _httpClient = httpClient;   
             _logger = logger;
@@ -33,9 +33,9 @@ namespace HubPagamento.ApiExterna.Service.Services.Card
 
             _logger.LogInformation("Iniciando chamada para adicionar o cartão à carteira");
 
-            HttpResponseMessage response = await _httpClient.PostAsync(_settings.WalletApi.BaseURL, requestContent);
+            HttpResponseMessage response = await _httpClient.PostAsync(_settings.WorkFlowApi.BaseURL + _settings.WorkFlowApi.CardEndpoint, requestContent);
 
-            var addCardresponse = await this._walletApiResponseFactory.BuildResponse(response);
+            var addCardresponse = await this._workFlowApiResponseFactory.BuildResponse(response);
 
             return addCardresponse;
         }

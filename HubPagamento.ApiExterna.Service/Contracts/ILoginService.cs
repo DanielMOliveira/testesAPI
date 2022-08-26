@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace HubPagamento.ApiExterna.Service.Contracts
 {
-    public interface ITokenService
+    public interface ILoginService
     {
-        Task<AuthorizeResponse> GenerateToken(string login, string password);
+        Task<AuthorizeResponse> Login(string service, string password);
     }
 }

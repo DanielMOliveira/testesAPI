@@ -1,4 +1,4 @@
-﻿using HubPagamento.ApiExterna.Service.Response;
+﻿using HubPagamento.ApiExterna.Service.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace HubPagamento.ApiExterna.Service.Contracts.Factories
 {
-    public interface IWalletApiResponseFactory : IBaseApiResponseFactory<AddCardResponse>
+    public interface ILoginApiResponseFactory : IBaseApiResponseFactory<AuthorizeResponse>
     {
+
     }
 }

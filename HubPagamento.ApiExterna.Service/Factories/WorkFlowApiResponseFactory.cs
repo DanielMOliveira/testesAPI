@@ -12,9 +12,9 @@ using System.Net;
 
 namespace HubPagamento.ApiExterna.Service.Factories
 {
-    public class WalletApiResponseFactory : IWalletApiResponseFactory
+    public class WorkFlowApiResponseFactory : IWorkFlowApiResponseFactory
     {
-        public WalletApiResponseFactory()
+        public WorkFlowApiResponseFactory()
         {
 
         }
