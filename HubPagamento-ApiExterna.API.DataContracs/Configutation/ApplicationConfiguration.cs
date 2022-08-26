@@ -51,13 +51,13 @@ namespace HubPagamento.ApiExterna.API.Configutation
         {
             services.AddHttpClient<ICardService, CardService>(client =>
             {
-                client.BaseAddress = new Uri(appSettings.WorkFlowApi.BaseURL); ;
+                client.BaseAddress = new Uri(appSettings.WorkFlowApi.BaseURL);
                 client.Timeout = TimeSpan.FromSeconds(60);
             }).SetHandlerLifetime(TimeSpan.FromMinutes(10));
 
             services.AddHttpClient<IIntegrationService, IntegrationService>(client =>
             {
-                client.BaseAddress = new Uri(appSettings.IntegrationM4UApi.M4UBaseURL); ;
+                client.BaseAddress = new Uri(appSettings.IntegrationM4UApi.M4UBaseURL);
                 client.Timeout = TimeSpan.FromSeconds(60);
             }).SetHandlerLifetime(TimeSpan.FromMinutes(10));
 
@@ -93,8 +93,8 @@ namespace HubPagamento.ApiExterna.API.Configutation
         public static AppSettings ConfigureAppSettings(this WebApplicationBuilder builder)
         {
             var appSettingsSection = builder.Configuration.GetSection(nameof(AppSettings));
-            if (appSettingsSection == null)
-                throw new ArgumentException(nameof(appSettingsSection), "No appsettings section has been found");
+
+            ArgumentNullException.ThrowIfNull(appSettingsSection);
 
             builder.Services.Configure<AppSettings>(appSettingsSection);
 
