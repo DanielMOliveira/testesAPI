@@ -44,6 +44,10 @@ namespace HubPagamento.ApiExterna.API.DataContracs.Configutation
                         // badrequest error
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;
+                    case NotFoundException e:
+                        // notfound error
+                        response.StatusCode = (int)HttpStatusCode.NotFound;
+                        break;
                     default:
                         // unhandled error
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
