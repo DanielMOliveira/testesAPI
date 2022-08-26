@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace HubPagamento.ApiExterna.Service.DTO
@@ -22,6 +23,7 @@ namespace HubPagamento.ApiExterna.Service.DTO
         /// <example>
         /// John Doe
         /// </example> 
+        [JsonPropertyName("nome")]
         public string Name { get; set; }
 
         /// <summary>
@@ -30,6 +32,7 @@ namespace HubPagamento.ApiExterna.Service.DTO
         /// <example>
         /// Av. República do Brasil, 1988
         /// </example> 
+        [JsonPropertyName("endereco")]
         public string Address { get; set; }
 
         /// <summary>
@@ -38,6 +41,7 @@ namespace HubPagamento.ApiExterna.Service.DTO
         /// <example>
         /// 08 Andar
         /// </example> 
+        [JsonPropertyName("complemento")]
         public string Complement { get; set; }
 
         /// <summary>
@@ -46,6 +50,7 @@ namespace HubPagamento.ApiExterna.Service.DTO
         /// <example>
         /// São Paulo
         /// </example> 
+        [JsonPropertyName("cidade")]
         public string City { get; set; }
 
         /// <summary>
@@ -54,6 +59,7 @@ namespace HubPagamento.ApiExterna.Service.DTO
         /// <example>
         /// SP
         /// </example> 
+        [JsonPropertyName("estado")]
         public string State { get; set; }
 
         /// <summary>
@@ -62,6 +68,7 @@ namespace HubPagamento.ApiExterna.Service.DTO
         /// <example>
         /// 08742000
         /// </example> 
+        [JsonPropertyName("codigoPostal")]
         public string PostalCode { get; set; }
 
         /// <summary>
@@ -70,6 +77,7 @@ namespace HubPagamento.ApiExterna.Service.DTO
         /// <example>
         /// BR
         /// </example> 
+        [JsonPropertyName("pais")]
         public string Country { get; set; }
 
         /// <summary>
@@ -78,6 +86,7 @@ namespace HubPagamento.ApiExterna.Service.DTO
         /// <example>
         /// 998712121
         /// </example> 
+        [JsonPropertyName("telefone")]
         public string Phone { get; set; }
 
         /// <summary>

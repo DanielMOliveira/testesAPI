@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace HubPagamento.ApiExterna.API.DataContracs.Requests
@@ -16,6 +17,7 @@ namespace HubPagamento.ApiExterna.API.DataContracs.Requests
         /// <example>
         /// Mastercard
         /// </example>
+        [JsonPropertyName("bandeira")]
         public string FlagBrand { get; set; }
 
         /// <summary>
@@ -53,7 +55,8 @@ namespace HubPagamento.ApiExterna.API.DataContracs.Requests
         /// <summary>
         /// Objeto que representa a entidade Fatura
         /// </summary>
-        public BillDTO Bill;
+        [JsonPropertyName("fatura")]
+        public BillDTO Bill { get; set; }
 
         /// <summary>
         /// Informe "true" para consulta de antifraude. 
@@ -61,10 +64,12 @@ namespace HubPagamento.ApiExterna.API.DataContracs.Requests
         /// <example>
         /// false
         /// </example>
+        [JsonPropertyName("fraude")]
         public bool Fraud { get; set; }
         /// <summary>
         /// Dados para analise de antifraude
         /// </summary>
+        [JsonPropertyName("antifraude")]
         public AntiFraudDTO? AntiFraud { get; set; }
     }
 }
