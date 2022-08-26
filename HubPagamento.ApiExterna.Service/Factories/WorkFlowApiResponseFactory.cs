@@ -55,5 +55,10 @@ namespace HubPagamento.ApiExterna.Service.Factories
         {
             throw new ConflictException(await response.Content.ReadAsStringAsync(), (int)HttpStatusCode.Conflict);
         }
+
+        private async Task<AddCardResponse> BuildResponse404Async(HttpResponseMessage response)
+        {
+            throw new NotFoundException(await response.Content.ReadAsStringAsync(), (int)HttpStatusCode.NotFound);
+        }
     }
 }

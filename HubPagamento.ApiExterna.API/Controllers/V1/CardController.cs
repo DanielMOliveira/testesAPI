@@ -23,6 +23,7 @@ namespace HubPagamento.ApiExterna.API.Controllers.V1
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> AddCard([FromBody] AddCardCommand addCardCommand)
         {
             var response = await _mediator.Send(addCardCommand);
