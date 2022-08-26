@@ -14,14 +14,14 @@ namespace HubPagamento.ApiExterna.API.DataContracs.Handlers.Account
 {
     public class AuthorizeUserHandler : IRequestHandler<AuthorizeCommand, AuthorizeResponse>
     {
-        private readonly ILoginService _tokenService;
-        public AuthorizeUserHandler(ILoginService tokenService)
+        private readonly ILoginService _loginService;
+        public AuthorizeUserHandler(ILoginService loginService)
         {
-            _tokenService = tokenService;
+            _loginService = loginService;
         }
         public async Task<AuthorizeResponse> Handle(AuthorizeCommand request, CancellationToken cancellationToken)
         {
-            var generatedToken = await _tokenService.Login(request.Login, request.Password);
+            var generatedToken = await _loginService.Login(request.Login, request.Password);
 
             return generatedToken;
         }
