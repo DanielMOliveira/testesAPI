@@ -31,6 +31,8 @@ namespace HubPagamento.ApiExterna.Service.Factories
                     return await BuildResponse400Async(response);
                 case HttpStatusCode.Conflict:
                     return await BuildResponse409Async(response);
+                case HttpStatusCode.NotFound:
+                    return await BuildResponse404Async(response);
                 default:
                     string exMessage = string.Format("A Api de Pagamento retornou um código desconhecido.Codigo retornado: {0} - {1}", (int)response.StatusCode, response.StatusCode);
                     throw new NotImplementedException(exMessage);
@@ -54,6 +56,11 @@ namespace HubPagamento.ApiExterna.Service.Factories
         private async Task<AddCardResponse> BuildResponse409Async(HttpResponseMessage response)
         {
             throw new ConflictException(await response.Content.ReadAsStringAsync(), (int)HttpStatusCode.Conflict);
+        }
+
+        private async Task<AddCardResponse> BuildResponse404Async(HttpResponseMessage response)
+        {
+            throw new NotFoundException(await response.Content.ReadAsStringAsync(), (int)HttpStatusCode.NotFound);
         }
     }
 }
