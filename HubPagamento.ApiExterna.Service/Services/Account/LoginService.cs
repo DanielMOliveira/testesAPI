@@ -35,9 +35,11 @@ namespace HubPagamento.ApiExterna.Service.Services.Account
             var jsonContent = JsonSerializer.Serialize(new LoginRequest(service, password));
             var requestContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            _logger.LogInformation("Iniciando chamada para adicionar o cartão à carteira");
+            _logger.LogInformation($"[{DateTime.Now.ToString("dd/MM/yyyy H:mm:ss")}] Chamando Endpoint de login workflow");
 
             HttpResponseMessage response = await _httpClient.PostAsync(_settings.WorkFlowApi.BaseURL + _settings.WorkFlowApi.Login, requestContent);
+
+            _logger.LogInformation($"[{DateTime.Now.ToString("dd/MM/yyyy H:mm:ss")}] Finalizando chamada Endpoint de login workflow");
 
             var loginResponse = await this._factory.BuildResponse(response);
 

@@ -31,12 +31,14 @@ namespace HubPagamento.ApiExterna.Service.Services.Card
             var jsonContent = JsonSerializer.Serialize(infoCard);
             var requestContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            _logger.LogInformation("Iniciando chamada para adicionar o cartão à carteira");
+            _logger.LogInformation($"[{ DateTime.Now.ToString("dd/MM/yyyy H:mm:ss") }] Iniciando chamada para adicionar o cartão à carteira");
 
             HttpResponseMessage response = await _httpClient.PostAsync(_settings.WorkFlowApi.BaseURL + _settings.WorkFlowApi.CardEndpoint, requestContent);
 
             var addCardresponse = await this._workFlowApiResponseFactory.BuildResponse(response);
 
+            _logger.LogInformation($"[{DateTime.Now.ToString("dd/MM/yyyy H:mm:ss")}] Retorno da chamada da workflow");
+          
             return addCardresponse;
         }
     }

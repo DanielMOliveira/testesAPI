@@ -31,9 +31,11 @@ namespace HubPagamento.ApiExterna.Service.Services.Integration
             var jsonContent = JsonSerializer.Serialize(cardM4U);
             var requestContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            _logger.LogInformation("Chamando Endpoint de Tokenização M4U");
+            _logger.LogInformation($"[{DateTime.Now.ToString("dd/MM/yyyy H:mm:ss")}] Chamando Endpoint de Tokenização M4U");
 
             HttpResponseMessage response = await _httpClient.PostAsync(_settings.IntegrationM4UApi.M4UBaseURL + _settings.IntegrationM4UApi.M4UCardsEndPoint, requestContent);
+
+            _logger.LogInformation($"[{DateTime.Now.ToString("dd/MM/yyyy H:mm:ss")}] Finalizando chamada do Endpoint de Tokenização M4U");
 
             var tokenizedCard = await this._integrationFactory.BuildResponse(response);
 
