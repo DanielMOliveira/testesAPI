@@ -5,16 +5,16 @@ namespace HubPagamento.ApiExterna.IoC.Configuration
     public class AppSettings
     {
         [Required]
-        public WalletApi WalletApi { get; set; }
+        public WorkFlowApi WorkFlowApi { get; set; }
 
         [Required]
-        public IntegrationApi IntegrationApi { get; set; }
+        public IntegrationM4UApi IntegrationM4UApi { get; set; }
 
         [Required]
         public JwtSettings JwtSettings { get; set; }
 }
 
-    public class WalletApi
+    public class WorkFlowApi
     {
         [Required]
         public string BaseURL { get; set; }
@@ -23,7 +23,7 @@ namespace HubPagamento.ApiExterna.IoC.Configuration
         public string CardEndpoint { get; set; }
     }
 
-    public class IntegrationApi
+    public class IntegrationM4UApi
     {
         public string M4UBaseURL { get; set; }
     }
