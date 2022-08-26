@@ -40,7 +40,7 @@ namespace HubPagamento.ApiExterna.Service.DTO
         /// Nome do cliente
         /// </summary>
         /// <example>John Doe</example>
-        [JsonPropertyName("telefone")]
+        [JsonPropertyName("nome")]
         [Required]
         public string Name { get; set; }
     }
