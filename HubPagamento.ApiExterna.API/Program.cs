@@ -49,6 +49,7 @@ try
         ? app.UseDeveloperExceptionPage()
         : app.UseMiddleware<ErrorHandlerMiddleware>();
 
+    app.UseHsts();
     app.UseHttpsRedirection();
 
     app.UseAuthentication();

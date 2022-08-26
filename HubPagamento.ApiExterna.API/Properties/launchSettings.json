@@ -1,4 +1,4 @@
-﻿{
+{
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
@@ -9,15 +9,25 @@
     }
   },
   "profiles": {
-    "HubPagamento.ApiExterna.API": {
+    "HubPagamento.ApiExterna.API Dev": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
       "applicationUrl": "https://localhost:7279;http://localhost:5279",
+      "dotnetRunMessages": true
+    },
+    "HubPagamento.ApiExterna.API Stg": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Staging"
-      }
+      },
+      "applicationUrl": "https://localhost:7279;http://localhost:5279",
+      "dotnetRunMessages": true
     },
     "IIS Express Dev": {
       "commandName": "IISExpress",

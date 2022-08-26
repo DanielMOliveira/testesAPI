@@ -18,7 +18,7 @@ namespace HubPagamento.ApiExterna.API.Controllers.V1
         }
 
         [Authorize]
-        [HttpPost]
+        [HttpPost("m4u")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> M4U([FromBody] TokenizeCardCommand tokenizeCardCommand)
