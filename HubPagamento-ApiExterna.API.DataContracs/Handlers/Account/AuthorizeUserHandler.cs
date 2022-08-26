@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace HubPagamento.ApiExterna.API.DataContracs.Handlers.Account
 {
-    public class AuthorizeUserHandler : IRequestHandler<AuthorizeCommand, AuthorizeResponse>
+    public class AuthorizeUserHandler : IRequestHandler<AuthorizeCommand, BaseResponse>
     {
         private readonly ILoginService _loginService;
         public AuthorizeUserHandler(ILoginService loginService)
         {
             _loginService = loginService;
         }
-        public async Task<AuthorizeResponse> Handle(AuthorizeCommand request, CancellationToken cancellationToken)
+        public async Task<BaseResponse> Handle(AuthorizeCommand request, CancellationToken cancellationToken)
         {
             var generatedToken = await _loginService.Login(request.Login, request.Password);
 

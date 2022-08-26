@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HubPagamento.ApiExterna.Service.Contracts.Factories
 {
-    public interface IIntegrationApiResponseFactory : IBaseApiResponseFactory<BemobiM4UIntegrationResponse>
+    public interface IIntegrationApiResponseFactory : IBaseApiResponseFactory<BaseResponse>
     {
 
     }

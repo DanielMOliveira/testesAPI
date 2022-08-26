@@ -14,7 +14,7 @@ namespace HubPagamento.ApiExterna.Service.Factories
 {
     public class LoginApiResponseFactory : ILoginApiResponseFactory
     {
-        public async Task<AuthorizeResponse> BuildResponse(HttpResponseMessage response)
+        public async Task<BaseResponse> BuildResponse(HttpResponseMessage response)
         {
             switch (response.StatusCode)
             {
@@ -32,23 +32,44 @@ namespace HubPagamento.ApiExterna.Service.Factories
             }
         }
 
-        private async Task<AuthorizeResponse> BuildResponseOkAsync(HttpResponseMessage response)
+        private async Task<BaseResponse> BuildResponseOkAsync(HttpResponseMessage response)
         {
-            return await JsonSerializer.DeserializeAsync<AuthorizeResponse>(await response.Content.ReadAsStreamAsync());
+            var resp = new BaseResponse()
+            {
+                IsSucess = response.IsSuccessStatusCode,
+                StatusCode = response.StatusCode,
+                Result = await response.Content.ReadAsStringAsync()
+            };
+
+            return resp;
         }
 
-        private async Task<AuthorizeResponse> BuildResponse401Async(HttpResponseMessage response)
+        private async Task<BaseResponse> BuildResponse401Async(HttpResponseMessage response)
         {
             throw new UnauthorizedAccessException();
         }
-        private async Task<AuthorizeResponse> BuildResponse422Async(HttpResponseMessage response)
+        private async Task<BaseResponse> BuildResponse422Async(HttpResponseMessage response)
         {
-            throw new UnprocessableEntityException(await response.Content.ReadAsStringAsync(), (int)HttpStatusCode.UnprocessableEntity);
+            var resp = new BaseResponse()
+            {
+                IsSucess = response.IsSuccessStatusCode,
+                StatusCode = response.StatusCode,
+                Result = await response.Content.ReadAsStringAsync()
+            };
+
+            return resp;
         }
 
-        private async Task<AuthorizeResponse> BuildResponse409Async(HttpResponseMessage response)
+        private async Task<BaseResponse> BuildResponse409Async(HttpResponseMessage response)
         {
-            throw new ConflictException(await response.Content.ReadAsStringAsync(), (int)HttpStatusCode.Conflict);
+            var resp = new BaseResponse()
+            {
+                IsSucess = response.IsSuccessStatusCode,
+                StatusCode = response.StatusCode,
+                Result = await response.Content.ReadAsStringAsync()
+            };
+
+            return resp;
         }
     }
 }

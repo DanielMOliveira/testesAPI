@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HubPagamento.ApiExterna.Service.Response
 {
-    public class AddCardResponse
+    public class AddCardResponse : BaseResponse
     {
         [JsonPropertyName("carteira")]
         public WalletResponse Wallet { get; set; }

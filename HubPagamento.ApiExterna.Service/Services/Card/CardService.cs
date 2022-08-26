@@ -3,6 +3,7 @@ using HubPagamento.ApiExterna.Service.Contracts;
 using HubPagamento.ApiExterna.Service.Contracts.Factories;
 using HubPagamento.ApiExterna.Service.DTO;
 using HubPagamento.ApiExterna.Service.Response;
+using HubPagamento.ApiExterna.Service.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -29,7 +30,7 @@ namespace HubPagamento.ApiExterna.Service.Services.Card
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task<AddCardResponse> InvokeAddCard(AddCardDTO infoCard)
+        public async Task<BaseResponse> InvokeAddCard(AddCardDTO infoCard)
         {
             var jsonContent = JsonSerializer.Serialize(infoCard, new JsonSerializerOptions()
             {

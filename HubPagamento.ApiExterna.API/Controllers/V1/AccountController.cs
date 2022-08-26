@@ -1,6 +1,7 @@
 ﻿using HubPagamento.ApiExterna.API.DataContracs.Commands.Account;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HubPagamento.ApiExterna.API.Controllers.V1
@@ -23,7 +24,12 @@ namespace HubPagamento.ApiExterna.API.Controllers.V1
         public async Task<IActionResult> Authorize([FromBody] AuthorizeCommand authorize)
         {
             var response = await _mediator.Send(authorize);
-            return Ok(response);
+
+            if (response.IsSucess)
+                return Ok(response.Result);
+
+            return StatusCode((int)response.StatusCode, response.Result);
+
         }
     }
 }

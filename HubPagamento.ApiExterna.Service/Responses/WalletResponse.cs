@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HubPagamento.ApiExterna.Service.Responses
 {
-    public class WalletResponse
+    public class WalletResponse : BaseResponse
     {
         [JsonPropertyName("carteiraId")]
         public int ID { get; set; }

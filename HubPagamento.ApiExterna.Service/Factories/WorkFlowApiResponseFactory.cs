@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using HubPagamento.ApiExterna.IoC.Configuration.Exceptions;
 using System.Net;
+using HubPagamento.ApiExterna.Service.Responses;
 
 namespace HubPagamento.ApiExterna.Service.Factories
 {
@@ -19,7 +20,7 @@ namespace HubPagamento.ApiExterna.Service.Factories
 
         }
 
-        public async Task<AddCardResponse> BuildResponse(HttpResponseMessage response)
+        public async Task<BaseResponse> BuildResponse(HttpResponseMessage response)
         {
             switch (response.StatusCode)
             {
@@ -39,26 +40,40 @@ namespace HubPagamento.ApiExterna.Service.Factories
             }
         }
 
-        private async Task<AddCardResponse> BuildResponseOkAsync(HttpResponseMessage response)
+        private async Task<BaseResponse> BuildResponseOkAsync(HttpResponseMessage response)
         {
-            return await JsonSerializer.DeserializeAsync<AddCardResponse>(await response.Content.ReadAsStreamAsync());
+            var resp = new BaseResponse()
+            {
+                IsSucess = response.IsSuccessStatusCode,
+                StatusCode = response.StatusCode,
+                Result = await response.Content.ReadAsStringAsync()
+            };
+
+            return resp;
         }
 
-        private async Task<AddCardResponse> BuildResponse401Async(HttpResponseMessage response)
+        private async Task<BaseResponse> BuildResponse401Async(HttpResponseMessage response)
         {
             throw new UnauthorizedAccessException();
         }
-        private async Task<AddCardResponse> BuildResponse400Async(HttpResponseMessage response)
+        private async Task<BaseResponse> BuildResponse400Async(HttpResponseMessage response)
         {
             throw new BadRequestException(await response.Content.ReadAsStringAsync(), (int)HttpStatusCode.BadRequest);
         }
 
-        private async Task<AddCardResponse> BuildResponse409Async(HttpResponseMessage response)
+        private async Task<BaseResponse> BuildResponse409Async(HttpResponseMessage response)
         {
-            throw new ConflictException(await response.Content.ReadAsStringAsync(), (int)HttpStatusCode.Conflict);
+            var resp = new BaseResponse()
+            {
+                IsSucess = response.IsSuccessStatusCode,
+                StatusCode = response.StatusCode,
+                Result = await response.Content.ReadAsStringAsync()
+            };
+
+            return resp;
         }
 
-        private async Task<AddCardResponse> BuildResponse404Async(HttpResponseMessage response)
+        private async Task<BaseResponse> BuildResponse404Async(HttpResponseMessage response)
         {
             throw new NotFoundException(await response.Content.ReadAsStringAsync(), (int)HttpStatusCode.NotFound);
         }

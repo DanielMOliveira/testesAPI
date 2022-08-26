@@ -8,7 +8,7 @@ namespace HubPagamento.ApiExterna.Service.Factories
 {
     public class IntegrationApiResponseFactory : IIntegrationApiResponseFactory
     {
-        public async Task<BemobiM4UIntegrationResponse> BuildResponse(HttpResponseMessage httpResponseMessage)
+        public async Task<BaseResponse> BuildResponse(HttpResponseMessage httpResponseMessage)
         {
             switch (httpResponseMessage.StatusCode)
             {
@@ -22,12 +22,19 @@ namespace HubPagamento.ApiExterna.Service.Factories
             }
         }
 
-        private async Task<BemobiM4UIntegrationResponse> BuildResponseOkAsync(HttpResponseMessage response)
+        private async Task<BaseResponse> BuildResponseOkAsync(HttpResponseMessage response)
         {
-            return await JsonSerializer.DeserializeAsync<BemobiM4UIntegrationResponse>(await response.Content.ReadAsStreamAsync());
+            var resp = new BaseResponse()
+            {
+                IsSucess = response.IsSuccessStatusCode,
+                StatusCode = response.StatusCode,
+                Result = await response.Content.ReadAsStringAsync()
+            };
+
+            return resp;
         }
 
-        private async Task<BemobiM4UIntegrationResponse> BuildResponse400Async(HttpResponseMessage response)
+        private async Task<BaseResponse> BuildResponse400Async(HttpResponseMessage response)
         {
             throw new BadRequestException(await response.Content.ReadAsStringAsync(), (int)HttpStatusCode.BadRequest);
         }

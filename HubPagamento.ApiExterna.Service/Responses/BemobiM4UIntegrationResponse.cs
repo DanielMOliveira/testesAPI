@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HubPagamento.ApiExterna.Service.Responses
 {
-    public class BemobiM4UIntegrationResponse
+    public class BemobiM4UIntegrationResponse : BaseResponse
     {
         [JsonPropertyName("card")]
         public CardM4UIntegrationResponse Card { get; set; }

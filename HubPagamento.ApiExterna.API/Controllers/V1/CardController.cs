@@ -27,7 +27,10 @@ namespace HubPagamento.ApiExterna.API.Controllers.V1
         public async Task<IActionResult> AddCard([FromBody] AddCardCommand addCardCommand)
         {
             var response = await _mediator.Send(addCardCommand);
-            return Ok(response);
+            if (response.IsSucess)
+                return Ok(response.Result);
+
+            return StatusCode((int)response.StatusCode, response.Result);
         }
     }
 }

@@ -24,7 +24,11 @@ namespace HubPagamento.ApiExterna.API.Controllers.V1
         public async Task<IActionResult> M4U([FromBody] TokenizeCardCommand tokenizeCardCommand)
         {
             var response = await _mediator.Send(tokenizeCardCommand);
-            return Ok(response);
+
+            if (response.IsSucess)
+                return Ok(response.Result);
+
+            return StatusCode((int)response.StatusCode, response.Result);
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HubPagamento.ApiExterna.Service.Responses
 {
-    public class AuthorizeResponse
+    public class AuthorizeResponse : BaseResponse
     {
         public AuthorizeResponse()
         {
