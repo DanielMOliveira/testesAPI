@@ -40,7 +40,7 @@ namespace HubPagamento.ApiExterna.Service.Services.Card
 
             var requestContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            _logger.LogInformation("Iniciando chamada para adicionar o cartão à carteira");
+            _logger.LogInformation($"[{ DateTime.Now.ToString("dd/MM/yyyy H:mm:ss") }] Iniciando chamada para adicionar o cartão à carteira");
 
             var accessToken = _httpContextAccessor.HttpContext?.Request?.Headers["Authorization"].ToString();
 
@@ -50,6 +50,8 @@ namespace HubPagamento.ApiExterna.Service.Services.Card
 
             var addCardresponse = await this._workFlowApiResponseFactory.BuildResponse(response);
 
+            _logger.LogInformation($"[{DateTime.Now.ToString("dd/MM/yyyy H:mm:ss")}] Retorno da chamada da workflow");
+          
             return addCardresponse;
         }
     }

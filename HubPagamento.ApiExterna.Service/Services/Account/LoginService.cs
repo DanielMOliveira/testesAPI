@@ -37,7 +37,7 @@ namespace HubPagamento.ApiExterna.Service.Services.Account
 
             var requestContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            _logger.LogInformation("Iniciando chamada para adicionar o cartão à carteira");
+            _logger.LogInformation($"[{DateTime.Now.ToString("dd/MM/yyyy H:mm:ss")}] Chamando Endpoint de login workflow");
 
             HttpResponseMessage response = await _httpClient.PostAsync(_settings.WorkFlowApi.BaseURL + _settings.WorkFlowApi.Login, requestContent);
 
