@@ -1,6 +1,7 @@
 ﻿using System.Dynamic;
 using System.Net;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace HubPagamento.ApiExterna.Service.Responses
 {
@@ -28,8 +29,13 @@ namespace HubPagamento.ApiExterna.Service.Responses
             }
         }
 
+        [JsonIgnore]
         public ExpandoObject? Result { get; private set; }
+
+        [JsonIgnore]
         public bool IsSucess { get; internal set; }
+
+        [JsonIgnore]
         public HttpStatusCode StatusCode { get; internal set; }
     }
 }
