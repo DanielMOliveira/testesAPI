@@ -1,22 +1,20 @@
 ﻿using HubPagamento.ApiExterna.IoC.Configuration.Exceptions;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.Extensions.Logging;
 using System.Net;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace HubPagamento.ApiExterna.API.DataContracs.Configutation
 {
     public class ErrorHandlerMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly ILogger<ErrorHandlerMiddleware> _logger;
 
-        public ErrorHandlerMiddleware(RequestDelegate next)
+        public ErrorHandlerMiddleware(RequestDelegate next, ILogger<ErrorHandlerMiddleware> logger)
         {
             _next = next;
+            _logger = logger;
         }
 
         public async Task Invoke(HttpContext context)
@@ -30,32 +28,19 @@ namespace HubPagamento.ApiExterna.API.DataContracs.Configutation
                 var response = context.Response;
                 response.ContentType = "application/json";
 
-                switch (error)
+                response.StatusCode = error switch
                 {
-                    case ConflictException e:
-                        // conflict error
-                        response.StatusCode = (int)HttpStatusCode.Conflict;
-                        break;
-                    case UnauthorizedAccessException e:
-                        // unauthorized error
-                        response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                        break;
-                    case BadRequestException e:
-                        // badrequest error
-                        response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        break;
-                    case NotFoundException e:
-                        // notfound error
-                        response.StatusCode = (int)HttpStatusCode.NotFound;
-                        break;
-                    default:
-                        // unhandled error
-                        response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                        break;
-                }
+                    ConflictException e => (int)HttpStatusCode.Conflict,// conflict error
+                    UnauthorizedAccessException e => (int)HttpStatusCode.Unauthorized,// unauthorized error
+                    BadRequestException e => (int)HttpStatusCode.BadRequest,// badrequest error
+                    NotFoundException e => (int)HttpStatusCode.NotFound,// notfound error
+                    _ => (int)HttpStatusCode.InternalServerError,// unhandled error
+                };
 
-                var result = JsonSerializer.Serialize(new { message = error?.Message });
+                var result = JsonSerializer.Serialize(new { message = "Ocorreu uma falha inesperada." });
                 await response.WriteAsync(result);
+
+                _logger.LogError(error, $"Ocorreu uma falha inesperada.");
             }
         }
     }
