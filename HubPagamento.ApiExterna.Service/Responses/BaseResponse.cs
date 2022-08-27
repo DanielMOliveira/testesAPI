@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Dynamic;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace HubPagamento.ApiExterna.Service.Responses
 {
@@ -14,12 +11,24 @@ namespace HubPagamento.ApiExterna.Service.Responses
 
         }
 
-        protected BaseResponse(object result)
+        public BaseResponse(string json)
         {
-            Result = result;
+            Result = GetObject(json);
         }
 
-        public object Result { get; set; }
+        internal ExpandoObject? GetObject(string json)
+        {
+            try
+            {
+                return JsonSerializer.Deserialize<ExpandoObject>(json);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public ExpandoObject? Result { get; private set; }
         public bool IsSucess { get; internal set; }
         public HttpStatusCode StatusCode { get; internal set; }
     }

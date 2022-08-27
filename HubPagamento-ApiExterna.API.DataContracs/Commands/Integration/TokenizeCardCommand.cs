@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HubPagamento.ApiExterna.API.DataContracs.Commands.Integration
 {
-    public class TokenizeCardCommand : IRequest<BemobiM4UIntegrationResponse>
+    public class TokenizeCardCommand : IRequest<BaseResponse>
     {
         /// <summary>
         /// Campo do Número do cartão

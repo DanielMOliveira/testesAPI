@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HubPagamento.ApiExterna.API.DataContracs.Commands.Account
 {
-    public class AuthorizeCommand : IRequest<AuthorizeResponse>
+    public class AuthorizeCommand : IRequest<BaseResponse>
     {
         [Required]
         public string Login { get; set; }
