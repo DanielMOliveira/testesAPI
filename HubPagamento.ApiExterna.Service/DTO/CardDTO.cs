@@ -64,7 +64,7 @@ namespace HubPagamento.ApiExterna.API.DataContracs.Requests
         /// <example>
         /// false
         /// </example>
-        [JsonPropertyName("fraude")]
+        [JsonPropertyName("fraud")]
         public bool Fraud { get; set; }
         /// <summary>
         /// Dados para analise de antifraude
