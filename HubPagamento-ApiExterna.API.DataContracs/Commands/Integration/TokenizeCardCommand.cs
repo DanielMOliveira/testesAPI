@@ -1,5 +1,6 @@
 ﻿using HubPagamento.ApiExterna.Service.Responses;
 using MediatR;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,5 +30,10 @@ namespace HubPagamento.ApiExterna.API.DataContracs.Commands.Integration
         /// Campo para informar o parceiro da M4U. Obs.: Nosso caso sempre será preenchido como CLARO
         /// </summary>
         public string Partner { get; set; }
+
+        /// <summary>
+        /// Campo para informar os dados do bearerToken da M4U.
+        /// </summary>
+        public string Token { get; set; }
     }
 }

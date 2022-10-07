@@ -47,7 +47,7 @@ namespace HubPagamento.ApiExterna.Service.Services.Card
 
             _httpClient.DefaultRequestHeaders.Add("Authorization", accessToken);
 
-            HttpResponseMessage response = await _httpClient.PostAsync(_settings.WorkFlowApi.BaseURL + _settings.WorkFlowApi.CardEndpoint, requestContent);
+            HttpResponseMessage response = await _httpClient.PostAsync(_settings.WorkFlowApi.CardEndpoint, requestContent);
 
             var addCardresponse = await this._workFlowApiResponseFactory.BuildResponse(response);
 

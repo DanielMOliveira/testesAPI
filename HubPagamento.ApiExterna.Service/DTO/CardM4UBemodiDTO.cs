@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Primitives;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,12 +14,13 @@ namespace HubPagamento.ApiExterna.Service.DTO
 
         }
 
-        public CardM4UBemodiDTO(string pan, string month, string year, string partner)
+        public CardM4UBemodiDTO(string pan, string month, string year, string partner, string token)
         {
             Pan = pan;
             Month = month;
             Year = year;
             Partner = partner;
+            Token = token;
         }
 
         /// <summary>
@@ -40,5 +42,10 @@ namespace HubPagamento.ApiExterna.Service.DTO
         /// Campo para informar o parceiro da M4U. Obs.: Nosso caso sempre será preenchido como CLARO
         /// </summary>
         public string Partner { get; set; }
+
+        /// <summary>
+        /// Campo do Bearer Token da M4U
+        /// </summary>
+        public string Token { get; set; }
     }
 }

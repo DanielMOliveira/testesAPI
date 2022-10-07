@@ -30,5 +30,20 @@ namespace HubPagamento.ApiExterna.API.Controllers.V1
 
             return StatusCode((int)response.StatusCode, response.Result);
         }
+
+        [Authorize]
+        [HttpPost("m4u/auth")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> LoginM4U([FromBody] LoginM4UCommand loginCommand)
+        {
+            var response = await _mediator.Send(loginCommand);
+
+            if (response.IsSucess)
+                return Ok(response.Result);
+
+            return StatusCode((int)response.StatusCode, response.Result);
+        }
     }
 }

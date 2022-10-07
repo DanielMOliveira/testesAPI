@@ -25,8 +25,8 @@ try
 
     builder.Services
         .ConfigureAuthentication(appSettings)
-        .AddHttpClientConfiguration(appSettings)
         .AddApplication()
+        .AddHttpClientConfiguration(appSettings)
         .AddMediator();
 
     var app = builder.Build();

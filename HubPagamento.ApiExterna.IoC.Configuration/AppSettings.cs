@@ -30,6 +30,8 @@ namespace HubPagamento.ApiExterna.IoC.Configuration
         public string M4UBaseURL { get; set; }
 
         public string M4UCardsEndPoint { get; set; }
+
+        public string M4UAuth { get; set; }
     }
 
     public class JwtSettings
