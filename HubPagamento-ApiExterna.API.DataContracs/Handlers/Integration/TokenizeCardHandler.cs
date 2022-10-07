@@ -15,7 +15,7 @@ namespace HubPagamento.ApiExterna.API.DataContracs.Handlers.Integration
         }
         public async Task<BaseResponse> Handle(TokenizeCardCommand request, CancellationToken cancellationToken)
         {
-            var tokenizedCard = await _service.InvokeBemobiM4UAsync(new CardM4UBemodiDTO(request.Pan, request.Month, request.Year, request.Partner));
+            var tokenizedCard = await _service.InvokeBemobiM4UAsync(new CardM4UBemodiDTO(request.Pan, request.Month, request.Year, request.Partner, request.Token));
             return tokenizedCard;
         }
     }
