@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Primitives;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,7 @@ namespace HubPagamento.ApiExterna.Service.DTO
         /// <summary>
         /// Campo do Bearer Token da M4U
         /// </summary>
+        [JsonIgnore]
         public string Token { get; set; }
     }
 }

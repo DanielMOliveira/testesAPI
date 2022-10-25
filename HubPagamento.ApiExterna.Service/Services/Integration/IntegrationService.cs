@@ -30,7 +30,7 @@ namespace HubPagamento.ApiExterna.Service.Services.Integration
         public async Task<BaseResponse> InvokeBemobiM4UAsync(CardM4UBemodiDTO cardM4U)
         {
             
-            var jsonContent = JsonSerializer.Serialize(new { cardM4U.Month, cardM4U.Pan, cardM4U.Partner, cardM4U.Year }, new JsonSerializerOptions()
+            var jsonContent = JsonSerializer.Serialize(cardM4U, new JsonSerializerOptions()
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
