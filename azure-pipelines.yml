@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-- develop
+- release/skywalker/*
 - master
 
 pool:
@@ -15,12 +15,6 @@ variables:
   projectName: '**/HubPagamento.ApiExterna.API.csproj'
 
 steps:
-- task: UseDotNet@2
-  displayName: 'Use .NET Core sdk 6.x'
-  inputs:
-    packageType: 'sdk'
-    version: '6.0.x'
-
 - task: DotNetCoreCLI@2
   displayName: Restore
   inputs:
