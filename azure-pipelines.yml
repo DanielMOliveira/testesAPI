@@ -4,8 +4,10 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-- release/skywalker/*
-- master
+  branches:
+    include:
+    - release/skywalker/*
+    - master
 
 pool:
   vmImage: ubuntu-latest
