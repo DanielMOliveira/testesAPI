@@ -2,6 +2,7 @@ using HubPagamento.ApiExterna.API.Application.Configuration;
 using HubPagamento.ApiExterna.API.Configutation;
 using HubPagamento.ApiExterna.API.DataContracs.Configutation;
 using HubPagamento.ApiExterna.IoC.Configuration;
+using HubPagamento_SSL_Lib;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Serilog;
 
@@ -50,7 +51,7 @@ try
         : app.UseMiddleware<ErrorHandlerMiddleware>();
 
     app.UseHsts();
-    app.UseHttpsRedirection();
+    app.UseOnlyHttps();
 
     app.UseAuthentication();
     app.UseAuthorization();
