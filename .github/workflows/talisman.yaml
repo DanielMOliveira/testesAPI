@@ -1,0 +1,29 @@
+name: Talisman Scan
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/*'  # Ajuste conforme seu fluxo de trabalho
+  pull_request:
+    branches:
+      - main
+      - 'feature/*'
+
+jobs:
+  talisman:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ruby
+          gem install talisman
+
+      - name: Run Talisman
+        run: |
+          talisman --scan .
