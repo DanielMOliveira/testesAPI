@@ -6,22 +6,22 @@
 version: 2
 updates:
   - package-ecosystem: "nuget"    
-    directory: "/HubPagamento.ApiExterna.API/HubPagamento.ApiExterna.API.csproj"      # Diretório do subprojeto A
+    directory: "/HubPagamento.ApiExterna.API"      # Diretório do subprojeto A
     schedule:
       interval: "daily" 
   - package-ecosystem: "nuget"
-    directory: "/HubPagamento-ApiExterna.API.DataContracs/HubPagamento.ApiExterna.API.Application.csproj"      # Diretório do subprojeto B
+    directory: "/HubPagamento-ApiExterna.API.DataContracs"      # Diretório do subprojeto B
     schedule:
       interval: "daily"
   - package-ecosystem: "nuget"
-    directory: "/HubPagamento-ApiExterna/HubPagamento.ApiExterna.Service/HubPagamento.ApiExterna.Service.csproj" # Diretório do subprojeto de testes
+    directory: "/HubPagamento-ApiExterna/HubPagamento.ApiExterna.Service" # Diretório do subprojeto de testes
     schedule:
       interval: "daily"
   - package-ecosystem: "nuget"
-    directory: "/HubPagamento-ApiExterna/HubPagamento.ApiExterna.IoC.Configuration/HubPagamento.ApiExterna.IoC.Configuration.csproj" # Diretório do subprojeto de testes
+    directory: "/HubPagamento-ApiExterna/HubPagamento.ApiExterna.IoC.Configuration" # Diretório do subprojeto de testes
     schedule:
       interval: "daily"
   - package-ecosystem: "nuget"
-    directory: "/HubPagamento-ApiExterna/IntegrationTests/HubPagamento.ApiExterna.IntegrationTests.csproj" # Diretório do subprojeto de testes
+    directory: "/HubPagamento-ApiExterna/IntegrationTests" # Diretório do subprojeto de testes
     schedule:
       interval: "daily"
