@@ -14,14 +14,14 @@ updates:
     schedule:
       interval: "daily"
   - package-ecosystem: "nuget"
-    directory: "/HubPagamento-ApiExterna/HubPagamento.ApiExterna.Service" # Diretório do subprojeto de testes
+    directory: "/HubPagamento.ApiExterna.Service" # Diretório do subprojeto de testes
     schedule:
       interval: "daily"
   - package-ecosystem: "nuget"
-    directory: "/HubPagamento-ApiExterna/HubPagamento.ApiExterna.IoC.Configuration" # Diretório do subprojeto de testes
+    directory: "/HubPagamento.ApiExterna.IoC.Configuration" # Diretório do subprojeto de testes
     schedule:
       interval: "daily"
   - package-ecosystem: "nuget"
-    directory: "/HubPagamento-ApiExterna/IntegrationTests" # Diretório do subprojeto de testes
+    directory: "/IntegrationTests" # Diretório do subprojeto de testes
     schedule:
       interval: "daily"
