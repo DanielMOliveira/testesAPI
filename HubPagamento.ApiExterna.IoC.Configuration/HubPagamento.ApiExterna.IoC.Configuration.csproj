@@ -13,7 +13,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
     <PackageReference Include="Serilog" Version="2.11.0" />
     <PackageReference Include="Serilog.Sinks.Stackify" Version="2.0.2" />
-    <PackageReference Include="StackifyLib" Version="2.2.11" />
+    <PackageReference Include="StackifyLib" Version="2.2.16" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
 	<PackageReference Include="Serilog.Settings.Configuration" Version="3.3.0" />
 	<PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
